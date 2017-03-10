@@ -1,0 +1,14 @@
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/dao/TweetDao.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/domain/User.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/util/Init.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/boundary/rest/JAXRSconfig.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/dao/UserDao.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/service/TweetService.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/util/PasswordHash.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/boundary/rest/TweetResource.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/service/RoleService.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/domain/Role.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/domain/Tweet.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/boundary/rest/UserResource.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/dao/RoleDao.java
+/Users/ruthgervandeneikhof/Documents/School/S6/JEA/Kwetter/src/main/java/service/UserService.java
