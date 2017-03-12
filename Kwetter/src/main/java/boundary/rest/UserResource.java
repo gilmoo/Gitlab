@@ -5,14 +5,18 @@
  */
 package boundary.rest;
 
+import domain.Tweet;
 import domain.User;
 import java.util.List;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import service.UserService;
 
 /**
@@ -33,4 +37,18 @@ public class UserResource {
         return userService.allUsers();
     }
     
+    @POST
+    @Path("CreateUser")
+    @Consumes("application/json")
+    @RolesAllowed("UserRole") 
+    public boolean createNewUser(User user){
+         return userService.createNewUser(user);
+    }
+    
+    @GET
+    @Path("Friends/{id}")
+    @RolesAllowed("UserRole") 
+    public List<User> allFriends(@PathParam("id")String username){
+        return userService.allFriends(username);
+    } 
 }

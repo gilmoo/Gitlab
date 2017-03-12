@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,7 +24,7 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "User.all", query = "SELECT c FROM User c"),   
-    @NamedQuery(name = "User.userByName", query = "SELECT c FROM User c WHERE c.name = :name")
+    @NamedQuery(name = "User.userByName", query = "SELECT c FROM User c WHERE c.username = :username")
 })
 public class User implements Serializable {
 
@@ -45,9 +44,6 @@ public class User implements Serializable {
 
     @ManyToMany(mappedBy = "friends")
     private List<User> users_friend;
-    
-    @OneToMany(mappedBy = "user_id")
-    private List<Tweet> tweets;
 
     @ManyToMany(mappedBy = "users")
     private List<Role> roles;
@@ -77,14 +73,6 @@ public class User implements Serializable {
 
     public void setUsers_friend(List<User> users_friend) {
         this.users_friend = users_friend;
-    }
-
-    public List<Tweet> getTweets() {
-        return tweets;
-    }
-
-    public void setTweets(List<Tweet> tweets) {
-        this.tweets = tweets;
     }
     
     public void setUsername(String username) {
@@ -134,15 +122,6 @@ public class User implements Serializable {
     public String getLocation() {
         return location;
     }
-
-
-    public Long getId() {
-        return user_id;
-    }
-
-    public void setId(Long id) {
-        this.user_id = id;
-    }
     
     public List<Role> getRoles() {
         return roles;
@@ -150,5 +129,13 @@ public class User implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+        
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 }

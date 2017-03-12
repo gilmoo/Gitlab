@@ -1,11 +1,14 @@
 domain/Role.class
 domain/User.class
 dao/RoleDao.class
+domain/Role_.class
 domain/Tweet.class
 boundary/rest/JAXRSconfig.class
+domain/Tweet_.class
 service/RoleService.class
 dao/TweetDao.class
 boundary/rest/UserResource.class
+domain/User_.class
 service/UserService.class
 util/Init.class
 dao/UserDao.class

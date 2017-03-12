@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
@@ -20,7 +21,10 @@ import javax.persistence.Temporal;
  * @author ruthgervandeneikhof
  */
 @Entity
-@NamedQuery(name = "Tweet.all", query = "SELECT c FROM Tweet c")
+@NamedQueries({
+    @NamedQuery(name = "Tweet.all", query = "SELECT c FROM Tweet c"),
+    @NamedQuery(name = "Tweet.tweetsByUser", query = "SELECT c FROM Tweet c WHERE c.username = :username")
+})
 public class Tweet implements Serializable {
 
     @Id
@@ -29,15 +33,15 @@ public class Tweet implements Serializable {
     private String bericht;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date datum;
-    @ManyToOne
-    private User user_id;
+    private String username;
     
     
     public Tweet(){}
     
-    public Tweet(String bericht, Date datum){
+    public Tweet(String bericht, Date datum, String username){
         this.bericht = bericht;
         this.datum = datum;
+        this.username = username;
     }
 
     public String getBericht() {

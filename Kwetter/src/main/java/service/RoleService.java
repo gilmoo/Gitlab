@@ -19,7 +19,7 @@ public class RoleService {
     @Inject
     RoleDao roleDao;
     
-    public void Save(Role r){
+    public void CreateNewRole(Role r){
         roleDao.CreateNewRole(r);
     }
     

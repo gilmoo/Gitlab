@@ -24,11 +24,15 @@ public class UserService {
         return userDao.allUsers();
     }
     
-    public List<User> allFriends(User u){
-        return userDao.allFriends(u);
+    public List<User> allFriends(String username){
+        return userDao.friends(username);
     }
     
-    public User userByName(String name){
-        return userDao.userByName(name);
+    public User userByName(String username){
+        return userDao.userByName(username);
+    }
+    
+    public boolean createNewUser(User user){
+        return userDao.CreateNewUser(user);
     }
 }

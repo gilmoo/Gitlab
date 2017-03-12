@@ -9,13 +9,12 @@ import dao.RoleDao;
 import dao.TweetDao;
 import dao.UserDao;
 import domain.Role;
+import domain.Tweet;
 import domain.User;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -53,20 +52,19 @@ public class Init {
         users.clear();
         users.add(user2);
         role.setUsers(users);
-        roleDao.addRole(role);
-        
-//        Date date = new Date();     
-//        Tweet tweet = new Tweet("blablaalblabl", date);
-//        Tweet tweet1 = new Tweet("testsretestes", date);
-//        tweetDao.Save(tweet);
-//        tweetDao.Save(tweet1);
-//        friends = new ArrayList<>();
-//        friends.add(user);
-//        user2.setFriends(friends);
-//        userDao.Save(user2);
-//        User user3 = userDao.userByName("Ruthger van den Eikhof");
-//        System.out.println(user3.getUsername());
-//        userDao.Save(user3);
+        roleDao.addRole(role);       
+        Date date = new Date();
+        Tweet tweet = new Tweet("blablaalblabl", date, user.getUsername());
+        Tweet tweet1 = new Tweet("testsretestes", date, user.getUsername());
+        tweetDao.CreateNewTweet(tweet);
+        tweetDao.CreateNewTweet(tweet1);
+        friends = new ArrayList<>();
+        friends.add(user);
+        user2.setFriends(friends);
+        userDao.CreateNewUser(user2);
+        User user3 = userDao.userByName("ruthger_vde");
+        System.out.println(user3.getName());
+        userDao.CreateNewUser(user3);
     }
     
 }

@@ -1,0 +1,3 @@
+dao_test/RoleDaoTest.class
+domain_test/UserTest.class
+service_test/UserServiceTest.class

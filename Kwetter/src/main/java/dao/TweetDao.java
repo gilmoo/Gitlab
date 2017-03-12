@@ -6,6 +6,7 @@
 package dao;
 
 import domain.Tweet;
+import domain.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,5 +27,11 @@ public class TweetDao {
     
     public void CreateNewTweet(Tweet tweet){
         em.persist(tweet);
+    }
+    
+    public List<Tweet> tweetsByUser(String username){
+        List<Tweet> tweets;
+        tweets = em.createNamedQuery("Tweet.tweetsByUser").setParameter("username", username).getResultList();
+        return tweets;
     }
 }

@@ -7,6 +7,7 @@ package service;
 
 import dao.TweetDao;
 import domain.Tweet;
+import domain.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -22,5 +23,9 @@ public class TweetService {
     
     public List<Tweet> allTweets(){
         return tweetDao.allTweets();
+    }
+    
+    public List<Tweet> tweetsByUser(String username){
+        return tweetDao.tweetsByUser(username);
     }
 }

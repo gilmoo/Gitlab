@@ -6,6 +6,7 @@
 package dao;
 
 import domain.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,19 +25,41 @@ public class UserDao {
         return em.createNamedQuery("User.all").getResultList();
     }
     
-    public List<User> allFriends(User u){
-        return em.createNamedQuery("User.allFriends").getResultList();
+    public User userByName(String username){
+        try{
+            User user;
+            List<User> users;
+            users = em.createNamedQuery("User.userByName").setParameter("username", username).getResultList();
+            user = users.get(0);
+            return user;
+        } catch (Error er) {
+            System.out.println(er.toString());
+            User user;    
+            return user = new User("","","");
+        }
     }
     
-    public User userByName(String name){
-        User user;
-        List<User> users;
-        users = em.createNamedQuery("User.userByName").setParameter("name", name).getResultList();
-        user = users.get(0);
-        return user;
+    public List<User> friends(String username){
+        try{
+            User user;
+            List<User> users;
+            users = em.createNamedQuery("User.userByName").setParameter("username", username).getResultList();
+            user = users.get(0);
+            return user.getFriends();
+        } catch (Error er) {
+            System.out.println(er.toString());
+            List<User> users = new ArrayList();
+            return users;
+        }
     }
     
-    public void CreateNewUser(User user){
-        em.persist(user);
+    public boolean CreateNewUser(User user){
+        try{
+            em.persist(user);
+        } catch(Error er) {
+            System.out.println(er.toString());
+            return false;
+        }
+        return true;
     }    
 }
