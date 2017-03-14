@@ -62,4 +62,8 @@ public class UserDao {
         }
         return true;
     }    
+    
+    public void setDao(EntityManager em){
+        this.em = em;
+    }
 }

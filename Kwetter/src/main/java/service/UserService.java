@@ -35,4 +35,8 @@ public class UserService {
     public boolean createNewUser(User user){
         return userDao.CreateNewUser(user);
     }
+    
+    public void setDao(UserDao dao){
+        this.userDao = dao;
+    }
 }

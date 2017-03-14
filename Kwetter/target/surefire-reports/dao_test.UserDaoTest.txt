@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: service_test.RoleServiceTest
+Test set: dao_test.UserDaoTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.82 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.969 sec

@@ -5,7 +5,6 @@
  */
 package boundary.rest;
 
-import domain.Tweet;
 import domain.User;
 import java.util.List;
 import javax.annotation.security.DeclareRoles;
