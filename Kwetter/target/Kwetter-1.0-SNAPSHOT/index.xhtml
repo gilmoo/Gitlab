@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{userBean.onPageLoad}"/>
+    </f:metadata>
+    <h:head>
+        <title>Kwetter - Profiel</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="west" size="280" header="Profiel" resizable="true">
+                <h:graphicImage value="#{userBean.profilePic}" /><br></br>
+                <h:outputLabel>Naam: </h:outputLabel>
+                <h:outputText value="#{userBean.user.name}" /><br></br>  
+                <h:outputLabel>Gebruikersnaam: </h:outputLabel>
+                <h:outputText value="#{userBean.user.username}" /><br></br>
+                <h:outputLabel>Locatie: </h:outputLabel>
+                <h:outputText value="#{userBean.user.location}" /><br></br>
+                <h:outputLabel>Website: </h:outputLabel>
+                <h:outputText value="#{userBean.user.web}" /><br></br>
+                <h:outputLabel>Bio: </h:outputLabel><br></br>
+                <h:outputText value="#{userBean.user.bio}" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="200" header="Right" resizable="true" effect="drop">
+                <h:outputText value="Right unit content." />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <h:form>
+                    <h:outputLink class="btn btn-primary" value ="auth/login.xhtml">Log in
+
+                    </h:outputLink>
+                    <p:commandButton value ="haal op" action="#{userBean.refreshUsers()}" update="lijst"/>
+                    <p:dataTable var="User" value="#{userBean.users}" id="lijst">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{User.username}" />
+                        </p:column>
+                        <p:column headerText="password">
+                            <h:outputText value="#{User.password}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form> 
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>

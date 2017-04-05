@@ -11,12 +11,17 @@ import dao.UserDao;
 import domain.Role;
 import domain.Tweet;
 import domain.User;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 /**
@@ -26,18 +31,35 @@ import javax.inject.Inject;
 @Singleton
 @Startup
 public class Init {
+    byte[] imageInByte;
     @Inject
     UserDao userDao;
     @Inject
-    TweetDao  tweetDao;
+    TweetDao tweetDao;
     @Inject
     RoleDao roleDao;
     List<User> friends;
-    
+
     @PostConstruct
-    public void init(){
-        User user = new User( "ruthger_vde","Ruthger van den Eikhof",PasswordHash.stringToHash("r"));   
-        User user2 = new User( "lino_t","Lino Thaencharun",PasswordHash.stringToHash("l"));
+    public void init() {
+        
+        BufferedImage originalImage;
+        try {  
+            String s = System.getProperty("user.home") + "/Desktop/straw_hat.JPEG";
+            originalImage = ImageIO.read(new File(s));
+            // convert BufferedImage to byte array
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(originalImage, "jpeg", baos);
+            baos.flush();
+            imageInByte = baos.toByteArray();
+            baos.close();
+        } catch (IOException ex) {
+            ex.toString();
+        }
+        User user = new User("ruthger_vde", "Ruthger van den Eikhof", PasswordHash.stringToHash("r"), "SoftwareEngineer bij fontys hogeschool", "www.imAwesome.com", "Walsberg");
+        User user2 = new User("lino_t", "Lino Thaencharun", PasswordHash.stringToHash("l"), "Vrachtwagenchauffeur", "www.supachoi.com", "Eindhoven");
+        user.setImage(imageInByte);
+        user2.setImage(imageInByte);
         userDao.CreateNewUser(user);
         userDao.CreateNewUser(user2);
         System.out.println(PasswordHash.stringToHash("r"));
@@ -52,7 +74,7 @@ public class Init {
         users.clear();
         users.add(user2);
         role.setUsers(users);
-        roleDao.addRole(role);       
+        roleDao.addRole(role);
         Date date = new Date();
         Tweet tweet = new Tweet("blablaalblabl", date, user.getUsername());
         Tweet tweet1 = new Tweet("testsretestes", date, user.getUsername());
@@ -66,5 +88,5 @@ public class Init {
         System.out.println(user3.getName());
         userDao.CreateNewUser(user3);
     }
-    
+
 }

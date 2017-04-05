@@ -44,7 +44,7 @@ public class RoleTest {
 
     @Test
     public void createNewRole(){
-        User user = new User("ruthger_vde", "Ruthger", "ww");
+        User user = new User("ruthger_vde", "Ruthger", "ww","SoftwareEngineer bij fontys hogeschool","www.imAwesome.com", "Walsberg");
         List<User> users = new ArrayList();
         users.add(user);
         Role role = new Role("Users");

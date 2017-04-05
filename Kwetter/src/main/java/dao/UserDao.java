@@ -35,7 +35,8 @@ public class UserDao {
         } catch (Error er) {
             System.out.println(er.toString());
             User user;    
-            return user = new User("","","");
+            byte[] test = null;
+            return user = new User("","","","","","");
         }
     }
     
@@ -63,7 +64,7 @@ public class UserDao {
         return true;
     }    
     
-    public void setDao(EntityManager em){
+    public void setEntityManager(EntityManager em){
         this.em = em;
     }
 }

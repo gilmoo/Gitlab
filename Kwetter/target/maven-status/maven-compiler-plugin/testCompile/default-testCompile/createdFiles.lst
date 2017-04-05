@@ -6,4 +6,3 @@ dao_test/RoleDaoTest.class
 domain_test/RoleTest.class
 dao_test/TweetDaoTest.class
 domain_test/UserTest.class
-dao_test/UserDaoTest.class

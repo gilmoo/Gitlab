@@ -4,6 +4,7 @@ dao/RoleDao.class
 domain/Role_.class
 domain/Tweet.class
 boundary/rest/JAXRSconfig.class
+boundary/jsf/UserBean.class
 domain/Tweet_.class
 service/RoleService.class
 dao/TweetDao.class

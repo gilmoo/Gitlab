@@ -41,7 +41,7 @@ public class UserTest {
 
     @Test
     public void createNewUser(){
-        User user = new User("ruthger_vde", "Ruthger", "wachtwoord");
+        User user = new User("ruthger_vde", "Ruthger", "wachtwoord","SoftwareEngineer bij fontys hogeschool","www.imAwesome.com", "Walsberg");
         assertNotNull(user);
         assertEquals(user.getName(), "Ruthger");
         user.setPassword("password");

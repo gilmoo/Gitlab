@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +24,8 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "User.all", query = "SELECT c FROM User c"),   
+    @NamedQuery(name = "User.all", query = "SELECT c FROM User c")
+    ,   
     @NamedQuery(name = "User.userByName", query = "SELECT c FROM User c WHERE c.username = :username")
 })
 public class User implements Serializable {
@@ -38,7 +40,9 @@ public class User implements Serializable {
     private String bio;
     private String web;
     private String location;
-    
+    @Lob
+    private byte[] image;
+
     @ManyToMany
     private List<User> friends;
 
@@ -47,18 +51,28 @@ public class User implements Serializable {
 
     @ManyToMany(mappedBy = "users")
     private List<Role> roles;
-    
-    
-    public User(){    
+
+    public User() {
     }
-    
-    public User(String username, String naam, String password){
+
+    public User(String username, String naam, String password, String bio, String web, String location) {
         this.username = username;
         this.name = naam;
         this.password = password;
         this.friends = new ArrayList<>();
+        this.web = web;
+        this.location = location;
+        this.bio = bio;
     }
-    
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public List<User> getFriends() {
         return friends;
     }
@@ -74,7 +88,7 @@ public class User implements Serializable {
     public void setUsers_friend(List<User> users_friend) {
         this.users_friend = users_friend;
     }
-    
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -122,7 +136,7 @@ public class User implements Serializable {
     public String getLocation() {
         return location;
     }
-    
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -130,7 +144,7 @@ public class User implements Serializable {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-        
+
     public Long getUser_id() {
         return user_id;
     }

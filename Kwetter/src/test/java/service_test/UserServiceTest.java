@@ -53,9 +53,9 @@ public class UserServiceTest {
     public void setUp() {
         List<User> users = new ArrayList();
         List<User> friends = new ArrayList();
-        user = new User( "ruthger_vde","Ruthger van den Eikhof",PasswordHash.stringToHash("r"));
-        user2 = new User( "lino_t","Lino Thaencharun",PasswordHash.stringToHash("l"));
-        User user3 = new User("victor_v", "Victor van der Vorst",PasswordHash.stringToHash("v"));
+        user = new User( "ruthger_vde","Ruthger van den Eikhof",PasswordHash.stringToHash("r"),"SoftwareEngineer bij fontys hogeschool","www.imAwesome.com", "Walsberg");
+        user2 = new User( "lino_t","Lino Thaencharun",PasswordHash.stringToHash("l"),"SoftwareEngineer bij fontys hogeschool","www.imAwesome.com", "Walsberg");
+        User user3 = new User("victor_v", "Victor van der Vorst",PasswordHash.stringToHash("v"),"SoftwareEngineer bij fontys hogeschool","www.imAwesome.com", "Walsberg");
         users.add(user);
         users.add(user2);
         users.add(user3);
@@ -74,35 +74,25 @@ public class UserServiceTest {
         String name = "Ruthger van den Eikhof";
         User user1 = us.userByName(name);
         verify(ud, Mockito.times(1)).userByName(name);
-
-//        assertNotNull(user1);
-//        assertEquals(user1, user);
-//        assertEquals(user1.getName(), user.getName());
     }
     
-//    @Test
-//    public void createNewUserTest(){
-//        assertTrue(us.createNewUser(user));
-//        assertFalse(us.createNewUser(user2));        
-//    }
-//    
-//    @Test
-//    public void allFriendsTest(){
-//        List<User> friends;
-//        friends = us.allFriends("lino_t");
-//        assertTrue(friends.isEmpty());
-//        friends = us.allFriends("ruthger_vde");
-//        assertFalse(friends.isEmpty());
-//        assertEquals(friends.get(0).getName(),"Ruthger van den Eikhof");
-//        assertEquals(friends.size(), 2);
-//    }
-//    
-//    @Test
-//    public void allUsersTest(){
-//        List<User> allUsers;
-//        allUsers = us.allUsers();
-//        assertFalse(allUsers.isEmpty());
-//        assertEquals(allUsers.get(2).getName(),"Victor van der Vorst");
-//        assertEquals(allUsers.size(), 3);
-//    }
+    @Test
+    public void createNewUserTest(){
+        us.createNewUser(user);
+        verify(ud, Mockito.times(1)).CreateNewUser(user);
+    }
+    
+    @Test
+    public void allFriendsTest(){
+        List<User> friends;
+        friends = us.allFriends("lino_t");
+        verify(ud, Mockito.times(1)).friends("lino_t");
+    }
+    
+    @Test
+    public void allUsersTest(){
+        List<User> allUsers;
+        allUsers = us.allUsers();
+        verify(ud, Mockito.times(1)).allUsers();
+    }
 }
