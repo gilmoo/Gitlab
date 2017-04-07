@@ -33,6 +33,14 @@ public class Tweet implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date datum;
     private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     
     
     public Tweet(){}

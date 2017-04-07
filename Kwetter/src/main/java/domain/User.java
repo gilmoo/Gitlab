@@ -40,14 +40,19 @@ public class User implements Serializable {
     private String bio;
     private String web;
     private String location;
-    @Lob
-    private byte[] image;
+    private String image;
 
     @ManyToMany
     private List<User> friends;
 
     @ManyToMany(mappedBy = "friends")
     private List<User> users_friend;
+
+    @ManyToMany
+    private List<User> following;
+
+    @ManyToMany(mappedBy = "following")
+    private List<User> user_following;
 
     @ManyToMany(mappedBy = "users")
     private List<Role> roles;
@@ -60,16 +65,33 @@ public class User implements Serializable {
         this.name = naam;
         this.password = password;
         this.friends = new ArrayList<>();
+        this.following = new ArrayList<>();
         this.web = web;
         this.location = location;
         this.bio = bio;
     }
 
-    public byte[] getImage() {
+    public List<User> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<User> following) {
+        this.following = following;
+    }
+
+    public List<User> getUser_following() {
+        return user_following;
+    }
+
+    public void setUser_following(List<User> user_following) {
+        this.user_following = user_following;
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

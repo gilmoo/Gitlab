@@ -39,34 +39,28 @@ public class Init {
     @Inject
     RoleDao roleDao;
     List<User> friends;
+    List<User> following;
 
     @PostConstruct
     public void init() {
-        
-        BufferedImage originalImage;
-        try {  
-            String s = System.getProperty("user.home") + "/Desktop/straw_hat.JPEG";
-            originalImage = ImageIO.read(new File(s));
-            // convert BufferedImage to byte array
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(originalImage, "jpeg", baos);
-            baos.flush();
-            imageInByte = baos.toByteArray();
-            baos.close();
-        } catch (IOException ex) {
-            ex.toString();
-        }
+        following = new ArrayList<>();
         User user = new User("ruthger_vde", "Ruthger van den Eikhof", PasswordHash.stringToHash("r"), "SoftwareEngineer bij fontys hogeschool", "www.imAwesome.com", "Walsberg");
         User user2 = new User("lino_t", "Lino Thaencharun", PasswordHash.stringToHash("l"), "Vrachtwagenchauffeur", "www.supachoi.com", "Eindhoven");
-        user.setImage(imageInByte);
-        user2.setImage(imageInByte);
+        user.setImage("Resources/fu.jpeg");
+        user2.setImage("Resources/straw_hat.jpeg");
+        following.add(user);
         userDao.CreateNewUser(user);
         userDao.CreateNewUser(user2);
+        User user3 = new User("victor_vdv", "Victor van der Vorst", PasswordHash.stringToHash("v"), "pieter bij fontys hogeschool", "www.Limburg.com", "Limbabwe");
+        user3.setImage("Resources/rosjan.jpg");
+        user3.setFollowing(following);
+        userDao.CreateNewUser(user3);
         System.out.println(PasswordHash.stringToHash("r"));
         Role role = new Role("User");
         roleDao.CreateNewRole(role);
         List<User> users = new ArrayList<>();
         users.add(user);
+        users.add(user3);
         role.setUsers(users);
         roleDao.addRole(role);
         role = new Role("Administrator");
@@ -80,13 +74,21 @@ public class Init {
         Tweet tweet1 = new Tweet("testsretestes", date, user.getUsername());
         tweetDao.CreateNewTweet(tweet);
         tweetDao.CreateNewTweet(tweet1);
+        tweet = new Tweet("Goed gegeten!", date, user3.getUsername());
+        tweetDao.CreateNewTweet(tweet);
+        tweet = new Tweet("Fontys? nou nee.", date, user3.getUsername());
+        tweetDao.CreateNewTweet(tweet);
+        tweet = new Tweet("Best day ever!", date, user2.getUsername());
+        tweetDao.CreateNewTweet(tweet);
+        tweet = new Tweet("Avondje stappen met de maten", date, user2.getUsername());
+        tweetDao.CreateNewTweet(tweet);
+        tweet = new Tweet("PSV Landskampioen!", date, user2.getUsername());
+        tweetDao.CreateNewTweet(tweet);
         friends = new ArrayList<>();
         friends.add(user);
+        friends.add(user3);
         user2.setFriends(friends);
         userDao.CreateNewUser(user2);
-        User user3 = userDao.userByName("ruthger_vde");
-        System.out.println(user3.getName());
-        userDao.CreateNewUser(user3);
     }
 
 }

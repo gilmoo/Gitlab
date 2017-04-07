@@ -6,10 +6,8 @@
 package boundary.jsf;
 
 import domain.User;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,6 +32,7 @@ public class UserBean implements Serializable {
     UserService userService;
 
     private List<User> users = new ArrayList<>();
+    private List<User> friends = new ArrayList<>();
     private User user;
     private String profilePic;
 
@@ -44,7 +43,7 @@ public class UserBean implements Serializable {
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
-    
+
     private String loggedUsername;
 
     public User getUser() {
@@ -58,23 +57,19 @@ public class UserBean implements Serializable {
     public void onPageLoad() throws IOException {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         loggedUsername = request.getRemoteUser();
-        try {
-            if (loggedUsername==null) {
-                loggedUsername = "Niet ingelogd";
-                profilePic = "";
-            } else {
-                user = userService.userByName(loggedUsername);
-                BufferedImage img = ImageIO.read(new ByteArrayInputStream(user.getImage()));
-                profilePic = "Resources/straw hat flag.jpeg";
-            }
-        } catch (IOException ex) {
-            ex.toString();
+        if (loggedUsername == null) {
+            loggedUsername = "Niet ingelogd";
+            profilePic = "";
+        } else {
+            user = userService.userByName(loggedUsername);
+            profilePic = user.getImage();
+            friends.clear();
+            friends = user.getFriends();
         }
     }
 
     public void refreshUsers() {
         users = userService.allUsers();
-        System.out.println("test");
     }
 
     public void setUsers(ArrayList users) {
@@ -85,4 +80,11 @@ public class UserBean implements Serializable {
         return users;
     }
 
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
+    }
 }

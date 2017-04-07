@@ -1,3 +1,4 @@
+boundary/jsf/TweetBean.class
 domain/Role.class
 domain/User.class
 dao/RoleDao.class
