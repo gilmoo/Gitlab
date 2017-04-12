@@ -32,7 +32,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private int user_id;
     @Column(unique = true)
     private String username;
     private String password;
@@ -40,6 +40,8 @@ public class User implements Serializable {
     private String bio;
     private String web;
     private String location;
+    @Lob
+    @Column(columnDefinition="TEXT")
     private String image;
 
     @ManyToMany
@@ -47,12 +49,6 @@ public class User implements Serializable {
 
     @ManyToMany(mappedBy = "friends")
     private List<User> users_friend;
-
-    @ManyToMany
-    private List<User> following;
-
-    @ManyToMany(mappedBy = "following")
-    private List<User> user_following;
 
     @ManyToMany(mappedBy = "users")
     private List<Role> roles;
@@ -65,26 +61,9 @@ public class User implements Serializable {
         this.name = naam;
         this.password = password;
         this.friends = new ArrayList<>();
-        this.following = new ArrayList<>();
         this.web = web;
         this.location = location;
         this.bio = bio;
-    }
-
-    public List<User> getFollowing() {
-        return following;
-    }
-
-    public void setFollowing(List<User> following) {
-        this.following = following;
-    }
-
-    public List<User> getUser_following() {
-        return user_following;
-    }
-
-    public void setUser_following(List<User> user_following) {
-        this.user_following = user_following;
     }
 
     public String getImage() {
@@ -94,7 +73,7 @@ public class User implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-
+    
     public List<User> getFriends() {
         return friends;
     }
@@ -167,11 +146,11 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public Long getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 }

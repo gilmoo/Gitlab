@@ -1,0 +1,59 @@
+<title>
+    Kwetter - Timeline</title>
+<div class="w3-container w3-theme-d5">
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    
+    <!-- The Grid -->
+    <div class="w3-row">
+        <input #tbSearch type="text" [ngModel]="tbSearchValue" class="w3-border w1-padding" placeholder="Search for tweets/users">
+        <button type="button" (click)="onClickSearchTweet(tbSearch.value)" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Search</button>
+        <hr>
+        <!-- Middle Column -->
+        <div class="w3-col m7">
+
+            <div class="w3-row-padding">
+                <div class="w3-col m12">
+                    <div class="w3-card-2 w3-round w3-white">
+                        <div class="w3-container w3-padding">
+                            <h6 class="w3-opacity">What's happening?</h6>
+                            <input #tbTweet type="text" [(ngModel)]="tbTweetValue" class="w3-border w3-padding" placeholder="Status: I'm awesome">
+                            <hr>
+                            <button type="button" (click)="onclickCreateTweet(tbTweet.value)" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <tbody>
+                <tr *ngFor="let t of allTweets">
+                    <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
+                        <span class="w3-right w3-opacity">{{t.datum}}</span>
+                        <h4>{{t.username}}</h4><br>
+                        <hr class="w3-clear">
+                        <p>{{t.bericht}}</p>
+                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+                    </div>
+                    <tr>
+            </tbody>
+            <!-- End Middle Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-col m3">
+            <div class="w3-card-2 w3-round w3-white w3-center">
+                <div class="w3-container">
+                    <p>Totaal aantal tweets:</p>
+                    <p><strong>{{countTweets}}</strong></p>
+                </div>
+            </div>
+            <br>
+
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>

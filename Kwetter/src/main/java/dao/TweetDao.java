@@ -6,11 +6,11 @@
 package dao;
 
 import domain.Tweet;
-import domain.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +27,17 @@ public class TweetDao {
     
     public void CreateNewTweet(Tweet tweet){
         em.persist(tweet);
+    }
+    
+    public Tweet maakNewTweet(Tweet tweet){
+        em.persist(tweet);
+        em.flush();
+        return em.find(Tweet.class, tweet.getId());
+    }
+    
+    public List<Tweet> tweetSearch(String bericht, String username){
+        Query query = em.createNamedQuery("Tweet.tweetSearch").setParameter("username", "%" + username + "%").setParameter("bericht", "%" + bericht + "%");
+        return query.getResultList();
     }
     
     public List<Tweet> tweetsByUser(String username){

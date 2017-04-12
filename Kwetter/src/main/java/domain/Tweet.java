@@ -6,14 +6,12 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -22,7 +20,8 @@ import javax.persistence.Temporal;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Tweet.all", query = "SELECT c FROM Tweet c"),
-    @NamedQuery(name = "Tweet.tweetsByUser", query = "SELECT c FROM Tweet c WHERE c.username = :username")
+    @NamedQuery(name = "Tweet.tweetsByUser", query = "SELECT c FROM Tweet c WHERE c.username = :username"),
+    @NamedQuery(name = "Tweet.tweetSearch", query = "SELECT c FROM Tweet c WHERE c.bericht LIKE :bericht OR c.username LIKE :username")
 })
 public class Tweet implements Serializable {
 
@@ -30,8 +29,7 @@ public class Tweet implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String bericht;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date datum;
+    private String datum;
     private String username;
 
     public String getUsername() {
@@ -45,7 +43,7 @@ public class Tweet implements Serializable {
     
     public Tweet(){}
     
-    public Tweet(String bericht, Date datum, String username){
+    public Tweet(String bericht, String datum, String username){
         this.bericht = bericht;
         this.datum = datum;
         this.username = username;
@@ -59,11 +57,11 @@ public class Tweet implements Serializable {
         this.bericht = bericht;
     }
 
-    public Date getDatum() {
+    public String getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(String datum) {
         this.datum = datum;
     }
     

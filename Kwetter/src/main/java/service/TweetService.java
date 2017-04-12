@@ -28,4 +28,12 @@ public class TweetService {
     public List<Tweet> tweetsByUser(String username){
         return tweetDao.tweetsByUser(username);
     }
+    
+    public List<Tweet> tweetSearch(String bericht, String username){
+        return tweetDao.tweetSearch(bericht, username);
+    }
+
+    public Tweet createNewTweet(Tweet tweet) {
+        return tweetDao.maakNewTweet(tweet);
+    }
 }

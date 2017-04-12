@@ -51,8 +51,8 @@ public class TweetServiceTest {
         ts = mock(TweetService.class);
         Date date = new Date();
         List<Tweet> tweets = new ArrayList();
-        tweet = new Tweet("test", date, "ruthger_vde");
-        tweet2 = new Tweet("test2", date,"ruthger_vde");
+        tweet = new Tweet("test", date.toString(), "ruthger_vde");
+        tweet2 = new Tweet("test2", date.toString(),"ruthger_vde");
         tweets.add(tweet);
         tweets.add(tweet2);
         when(ts.allTweets()).thenReturn(tweets);

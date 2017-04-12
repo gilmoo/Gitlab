@@ -8,6 +8,7 @@ package boundary.rest;
 import domain.User;
 import java.util.List;
 import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -24,14 +25,13 @@ import service.UserService;
  */
 @Stateless
 @Path("User")
-@DeclareRoles({"UserRole"})
+@PermitAll
 public class UserResource {
     @Inject
     UserService userService;
     
     @GET
     @Path("allUsers")
-    @RolesAllowed("UserRole")  
     public List<User> allUsers(){
         return userService.allUsers();
     }
@@ -39,14 +39,18 @@ public class UserResource {
     @POST
     @Path("CreateUser")
     @Consumes("application/json")
-    @RolesAllowed("UserRole") 
     public boolean createNewUser(User user){
          return userService.createNewUser(user);
     }
     
     @GET
+    @Path("userByUsername/{username}")
+    public User userByUsername(@PathParam("username")String username){
+        return userService.userByName(username);
+    } 
+    
+    @GET
     @Path("Friends/{id}")
-    @RolesAllowed("UserRole") 
     public List<User> allFriends(@PathParam("id")String username){
         return userService.allFriends(username);
     } 

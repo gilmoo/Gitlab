@@ -43,7 +43,7 @@ public class TweetTest {
     @Test
     public void createNewTweet(){
         Date date = new Date();
-        Tweet tweet = new Tweet("Dit is een bericht.", date, "ruthger_vde");
+        Tweet tweet = new Tweet("Dit is een bericht.", date.toString(), "ruthger_vde");
         assertNotNull(tweet);
         assertEquals(tweet.getBericht(),"Dit is een bericht.");
         tweet.setBericht("Dit is een nieuw bericht");
